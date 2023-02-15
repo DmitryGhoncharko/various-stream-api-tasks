@@ -14,21 +14,21 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-//        task1();
-//        task2();
-//        task3();
-//        task4();
-//        task5();
-//        task6();
-//        task7();
-//        task8();
-//        task9();
-//        task10();
-//        task11();
-//        task12();
-//        task13();
-//        task14();
-//        task15();
+        task1();
+        task2();
+        task3();
+        task4();
+        task5();
+        task6();
+        task7();
+        task8();
+        task9();
+        task10();
+        task11();
+        task12();
+        task13();
+        task14();
+        task15();
     }
 
     private static void task1() throws IOException {
@@ -36,9 +36,9 @@ public class Main {
         animals.
                 stream().
                 filter(x->x.getAge()>=10 && x.getAge() <=20).
-                sorted(Comparator.comparingInt(x->x.getAge())).
+                sorted(Comparator.comparingInt(Animal::getAge)).
                 skip(14).limit(7).
-                forEach(x-> System.out.println(x));
+                forEach(System.out::println);
     }
 
     private static void task2() throws IOException {
@@ -47,7 +47,7 @@ public class Main {
                 stream().
                 filter(x->"Japanese".equals(x.getOrigin())).
                 map(x->"Female".equals(x.getGender())?x.getBread().toUpperCase():x.getBread()).
-                forEach(x-> System.out.println(x));
+                forEach(System.out::println);
 
     }
 
@@ -56,7 +56,7 @@ public class Main {
         animals.
                 stream().
                 filter(x->x.getAge()>30 && x.getOrigin().startsWith("A")).distinct().
-                forEach(x-> System.out.println(x));
+                forEach(System.out::println);
     }
 
     private static void task4() throws IOException {
@@ -95,9 +95,9 @@ public class Main {
         List<Animal> animals = Util.getAnimals();
         animals.
                 stream().
-                sorted(Comparator.comparing(x->x.getBread())).
-                limit(100).max(Comparator.comparing(x->x.getAge())).
-                ifPresent(x-> System.out.println(x));
+                sorted(Comparator.comparing(Animal::getBread)).
+                limit(100).max(Comparator.comparing(Animal::getAge)).
+                ifPresent(System.out::println);
     }
 
     private static void task9() throws IOException {
@@ -113,7 +113,7 @@ public class Main {
         List<Animal> animals = Util.getAnimals();
         int sumAge = animals.
                 stream().
-                mapToInt(x->x.getAge()).
+                mapToInt(Animal::getAge).
                 sum();
         System.out.println(sumAge);
     }
@@ -123,9 +123,9 @@ public class Main {
         animals.
                 stream().
                 filter(x->"Indonesian".equals(x.getOrigin())).
-                mapToInt(x->x.getAge()).
+                mapToInt(Animal::getAge).
                 average().
-                ifPresent(x-> System.out.println(x));
+                ifPresent(System.out::println);
     }
 
     private static void task12() throws IOException {
@@ -133,9 +133,9 @@ public class Main {
         people.
                 stream().
                 filter(x->"Male".equals(x.getGender()) && (2023 - x.getDateOfBirth().getYear()>=18) && (2023 - x.getDateOfBirth().getYear()<=20)).
-                sorted(Comparator.comparing(x->x.getRecruitmentGroup())).
+                sorted(Comparator.comparing(Person::getRecruitmentGroup)).
                 limit(200).
-                forEach(x-> System.out.println(x));
+                forEach(System.out::println);
     }
 
     private static void task13() throws IOException {
